@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@3/dark.css" rel="stylesheet">
+    <link rel="stylesheet" href="template/css/animate.css">
+    <style>
+
+@import url(https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+[class*="entypo-"]:before {
+    font-family: 'entypo', sans-serif;
+}
+
+  *,
+  *:before,
+  *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; 
+ 
+    
+    
+}
+
+h2 {
+    color: white;
+    margin-left:12px;
+}
+
+h3 {
+    color:white;
+    margin-left:12px;
+    font-size: 23px;
+
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family:'roboto' , sans-serif;
+    background-color: black;
+    /* background: url(../hal/images/4.jpg); */
+    background-size: cover;
+    
+    
+} 
+
+
+.box{
+    position: absolute;
+    top: 26%;
+    left: 38%;
+    padding: 0px;
+    
+    
+}
+
+form {
+    position:relative;
+    margin: 0px auto;
+    width: 380px;
+    height: auto;
+}
+
+.box button:hover, .form button:active
+{
+    background: #ff0000;
+
+}
+
+
+.box .register
+{
+    display: none;
+}
+
+input {
+    padding: 16px;
+    border-radius:7px;
+    border:0px;
+    background: rgba(255,255,255,.2);
+    display: block;
+    margin: 15px;
+    width: 300px;  
+    color:white;
+    font-size:18px;
+    height: 54px;
+}
+
+input:focus {
+    outline-color: rgba(0,0,0,0);
+    background: rgba(255,255,255,.95);
+    color: black;
+}
+
+button {
+    float:right;
+    height: 121px;
+    width: 50px;
+    border: 0px;
+    background: #da2d2d;
+    border-radius:7px;
+    padding: 10px;
+    color:white;
+    font-size:22px;
+    cursor: pointer;
+}
+
+.register button
+{
+    float:right;
+    height: 260px;
+    width: 50px;
+    border: 0px;
+    background : #00bcd8;
+    border-radius:7px;
+    padding: 10px;
+    color:white;
+    font-size:22px;
+    cursor: pointer;
+}
+
+.inputUserIcon {
+    position:absolute;
+    top:68px;
+    right: 80px;
+    color:white;
+}
+
+.inputPassIcon {
+    position:absolute;
+    top:136px;
+    right: 80px;
+    color:white;
+}
+
+
+input::-webkit-input-placeholder {
+    color: white;
+}
+
+input:focus::-webkit-input-placeholder {
+    color: black;
+}
+
+.box p 
+{
+    color: antiquewhite;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 19px;
+    padding: 2%;
+    top: 10px;
+}
+
+.box a
+{
+    color: aliceblue;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    margin: 9px;
+}
+
+p a:hover {
+	background: #00bcd8;
+}
+
+    </style>
+</head>
+
+<body>
+
+
+    <div class="box">
+
+        <form class="login">
+            <h2><span class="fontawesome-arrow-right"> </span> Log In</h2>
+            <button class="submit  animated fadeInRight slow" value="SIGN IN"><span class="entypo-lock"></span></button>
+            <span class="entypo-user inputUserIcon"></span>
+            <input type="text" class="user  animated fadeInDown slow" name="username" placeholder="username"  />
+            <span class="entypo-key inputPassIcon"> </span>
+            <input type="password" class="pass  animated fadeInLeft slow" name="password" placeholder="password"  />
+            <br>
+            <hr>
+        </form>
+
+    </div>
+
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.0.1/sweetalert.min.js"></script> -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+    <!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script> -->
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+
+        // Prepare SweetAlert2
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+
+        $(document).ready(()=>{
+            $('form').on("submit", (event) => {
+                event.preventDefault() //Biar gak reload
+
+                //Ambil Data dari form
+                username = document.getElementsByName('username')[0].value
+                password = document.getElementsByName('password')[0].value
+
+               
+                //Prepare ajax
+                var uBaca = "../../connect/login-admin.php" //Proses cek
+                var isi = {
+					fusername: username,
+                    fpassword: password
+                }
+
+                //Ajax
+                if (username !== "" & password !== ""){
+                $.ajax({
+                    method:"POST",
+                    url:uBaca,
+                    data:isi}).done((data) => {
+						
+                        //data merupakan data dari baca.php
+                        if(data == 'masuk'){
+                            // Swal.fire(
+                            //      'success',
+                            //     'Good job',
+                            //     'Login Success'
+                            // )
+                            Swal.fire({
+                                icon: 'success',
+                                showConfirmButton: false,
+                                timer: 500
+
+                            })
+
+							window.location = "dashboard";
+							
+                        }else{
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Username dan Password salah!',
+                                showConfirmButton: false
+                            })
+                        }
+                    })
+                } else {
+                    Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Username dan Password Tidak Boleh Kosong!',
+                                showConfirmButton: false
+                            })
+                }  
+            });
+        });
+	</script>
+	
+
+
+
+</body>
+
+</html>     

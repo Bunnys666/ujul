@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Form Pelaporan</title>
+
+    <!-- Icons font CSS-->
+	<link rel="icon" type="#" href="../images/logo_pertamina.png">
+
+    <!-- <link href="../User/js/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all"> -->
+    <link rel="stylesheet" media="all" href="../hal/User/js/vendor/mdi-font/css/material-design-iconic-font.min.css">
+    <link href="../hal/User/js/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="../hal/User/js/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="../hal/User/js/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="../hal/User/css/main.css" rel="stylesheet" media="all">
+	<link rel="stylesheet" href="../hal/User/css/animate.css">
+
+</head>
+
+<body>
+    <div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
+        <div class="wrapper wrapper--w960">
+            <div class="card card-2">
+                <div class="card-heading"></div>
+                <div class="card-body animated fadeInUp slow">
+                    <h2 class="title">Form Kerusakan</h2><hr><br><br>
+                    
+                    <form >
+                        <div class="input-group">
+                            <input class="input--style-2" type="text" placeholder="nama" name="username">
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-2" type="text" placeholder="No Hp" name="no_hp">
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-2" type="time" placeholder="waktu" name="jam">
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-2" type="text" placeholder="Jenis Lapangan" name="jenis_lapangan">
+                        </div>
+                        <div class="p-t-30">
+                            <button class="btn btn--radius btn--green" id="hijau" type="submit">Submit</button><br><br>
+                            <!-- <button class="btn btn--radius btn--green" type="submit" href>Cancel</button> -->
+                            <a href="../Awal" class="btn btn--radius btn--green">Cancel</a>
+
+                        </div>
+                        <br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Jquery JS-->
+ 
+    <script src="../hal/User/js/vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="../hal/User/js/vendor/select2/select2.min.js"></script>
+    <script src="../hal/User/js/vendor/datepicker/moment.min.js"></script>
+    <script src="../hal/User/js/vendor/datepicker/daterangepicker.js"></script>
+    <!-- Main JS-->
+    <script src="../hal/User/js/global.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+    <script>
+        $(document).ready(()=>{
+            $('form').on("submit", (event) => {
+                event.preventDefault() //Biar gak reload
+
+                //Ambil Data dari form
+                username = document.getElementsByName('username')[0].value
+                no_hp = document.getElementsByName('no_hp')[0].value
+                jam = document.getElementsByName('jam')[0].value
+				jenis_lapangan = document.getElementsByName('jenis_lapangan')[0].value
+
+                //Prepare ajax
+                var uBaca = "connect/laporan.php" //Proses cek
+                var isi = {
+					fusername: username,
+                    fno_hp: no_hp,
+					fjam: jam,
+					fjenis_lapangan:jenis_lapangan,
+                }
+
+                //Ajax
+                if (username !== "" && no_hp !== "" && jam !=="" && jenis_lapangan !== "") { 
+                $.ajax({
+                    method:"POST",
+                    url:uBaca,
+                    data:isi}).done((data) => {
+						
+                        //data merupakan data dari baca.php
+                        if(data == 'masuk'){
+							
+							Swal.fire({
+							icon: 'success',
+							timer: '500'
+							})
+
+							window.location.href = "pemesanan";
+							
+                        }else{
+                            Toast.fire({
+                                type: 'error',
+                                title: 'DATA YANG KAMU MASUKKAN SALAH!'
+                            })
+                        }
+                    })
+                }else{
+                    Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Isi Data dengan Benar!',
+                                showConfirmButton: false
+                            })
+                }
+                
+    
+            });
+        });
+	</script>
+
+</body>
+
+</html>
