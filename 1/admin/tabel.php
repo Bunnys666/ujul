@@ -155,8 +155,7 @@
               
             </div>
           
-            <input type="submit" target="_BLANK" name="generate_pdf" class="btn btn-success" value="Generate PDF"/>  
-            <a href="pdf.php"><button id="pdf">print</button></a>
+            <a href="pdf.php" target="_BLANK" class="btn btn-success">Print PDF <i class="fas fa-print"></i></a>
           
           </div>
       </div>
