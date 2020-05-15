@@ -8,7 +8,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=0, shrink-to-fit=no">
   <title>Admin | Tabel user</title>
   
-  <link rel="icon" type="#" href="../images/logo_pertamina.png">
   <!-- Custom fonts for this template-->
   <link href="../admin/template/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <!-- Page level plugin CSS-->
@@ -16,10 +15,7 @@
   <!-- Custom styles for this template-->
   <link href="../admin/template/css/sb-admin.css" rel="stylesheet">
 
-  <!-- animate css lurd -->
-
-  <link rel="stylesheet" href="../hal/User/css/animate.css">
-  
+  <!-- animate css lurd -->  
 </head>
 
 <body id="page-top">
@@ -103,15 +99,15 @@
             <div class="table-responsive">
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
-                    <th>Nama Pemesan</th>
-                    <th>No.Telefon</th>
-                    <th>Jam Mulai</th>
-                    <th>Jam Selesai</th>
-                    <th>Jenis Lapangan</th>
-                    <th>Tanggal Laporan</th>
-                    <th>Total</th>
-                    <th>STATUS</th>
-                    <th style="width:13%;">Command</th>
+                    <th style="width: 8%;" >Nama Pemesan</th>
+                    <th style="width: 8%;">No.Telefon</th>
+                    <th style="width: 8%;">Jam Mulai</th>
+                    <th style="width: 8%;">Jam Selesai</th>
+                    <th style="width: 10%;">Jenis Lapangan</th>
+                    <th style="width: 8%;">Tanggal Laporan</th>
+                    <th style="width: 8%;">Total</th>
+                    <th style="width: 8%;">STATUS</th>
+                    <th style="width:8%;">Command</th>
                 </thead>    
                 <tbody>
                 <?php
@@ -135,14 +131,9 @@
                 <a href=<?php echo '../../connect/berhasil-laporan.php?id=' . $data["id"] ?>>
                     <button type='button' class='btn btn-info '>Update</i></button>
                 </a>
-                  
-                <a href=<?php echo '../../connect/reject-laporan.php?id=' . $data["id"]?>>
-                    <button type='button' class='btn btn-success'>Edit</button>
-                
-
+     
                 <a href=<?php echo '../../connect/reject-laporan.php?id=' . $data["id"]?>>
                     <button type='button' class='btn btn-danger'>Cancel</button>
-                  
                 </td>
 
                   </tr>
