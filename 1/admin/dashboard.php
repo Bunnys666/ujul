@@ -21,6 +21,7 @@ $connect2 = mysqli_connect('localhost','root','','futsal');
 
   <!-- Custom styles for this template-->
   <link href="../admin/template/css/sb-admin.css" rel="stylesheet">
+  <link rel="stylesheet" href="../admin/template/css/animate.css">
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
@@ -191,8 +192,6 @@ $connect2 = mysqli_connect('localhost','root','','futsal');
   <script src="../admin/template/js/sb-admin.min.js"></script>
 
   <!-- Demo scripts for this page-->
-  <script src="../admin/template/js/demo/datatables-demo.js"></script>
-  <script src="../admin/template/js/demo/chart-area-demo.js"></script>
 
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

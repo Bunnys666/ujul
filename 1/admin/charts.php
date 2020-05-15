@@ -47,7 +47,7 @@ echo "</script>";
 
   <!-- Custom styles for this template-->
   <link href="../admin/template/css/sb-admin.css" rel="stylesheet">
-  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="template/css/animate.css">
 </head>
 
 <body id="page-top">
